@@ -518,6 +518,13 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 			</div>
 		</div>
+
+		<div class="input-group">
+	<input id="message" class="form-control" type="text"></input>
+	<span class="input-group-btn">
+	<button class="btn btn-default" type="button" onclick="sendMessage()">Send</button>
+	</span>
+</div>
 <!-- Scripts -->
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/skel.min.js"></script>
@@ -582,5 +589,15 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
     		var password = document.getElementById("inputPassword").value;
     	}
     </script>
+    <script>
+	function sendMessage(){
+	    var message=document.getElementById('message').value;
+	    console.log(message);
+	    $.post( "https://hooks.slack.com/services/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", { payload: '{"text": "'+message+'"}'})
+		.done(function( data ) {
+			alert( "Data Loaded: " + data );
+			});
+	}
+</script>
 	</body>
 </html>
