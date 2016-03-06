@@ -520,9 +520,10 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 		</div>
 
 		<div class="input-group">
-	<input id="message" class="form-control" type="text"></input>
+	<input id="hook" class="form-control" type="text" placeholder="Webhook URL"></input>
+	<input id="message" class="form-control" type="text" placeholder="Name"></input>
 	<span class="input-group-btn">
-	<button class="btn btn-default" type="button" onclick="sendMessage()">Send</button>
+	<button class="btn btn-default" type="button" onclick="sendMessage()">Check In</button>
 	</span>
 </div>
 <!-- Scripts -->
@@ -592,10 +593,12 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
     <script>
 	function sendMessage(){
 	    var message=document.getElementById('message').value;
+	    var webhook=document.getElementById('hook').value;
+
 	    console.log(message);
-	    $.post( "https://hooks.slack.com/services/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", { payload: '{"text": "'+message+'"}'})
+	    $.post( "webhook", { payload: '{"text": "'+message+'" + "has checked in!"}'})
 		.done(function( data ) {
-			alert( "Data Loaded: " + data );
+			alert( "Sent to slack: " + data );
 			});
 	}
 </script>
